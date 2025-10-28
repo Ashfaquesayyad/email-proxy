@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { name, email, message } = req.body;
+  const { name, title, message } = req.body;
 
   try {
     const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
@@ -18,10 +18,9 @@ export default async function handler(req, res) {
         template_id: "template_lspd2cr",
         user_id: "mTPW7LkGw3fjdDrDX",
         template_params: {
-          title: "New Flood Service Request",
-          name,
-          email,
-          message,
+          'title': title,
+          'name': name,
+          'message': message,
         },
       }),
     });
